@@ -7,15 +7,19 @@
 import sys
 import time
 import random
-import getopt
+import re
+
+sys.setrecursionlimit(500000)
 
 def printTime(func):
 	def wrapper(*args):
 		# Pré-traitement
 		start_time = time.clock()
 		val = func(*args)
-		# Post-traitement
-		return time.clock() - start_time
+		for x in range(1,len(sys.argv)):
+			if sys.argv[x] == "-t":
+				print (time.clock() - start_time)
+		return val
 	return wrapper
 	
 @printTime
@@ -33,7 +37,7 @@ def quickSort(arr, funcPivot, limit):
     pivotList = []
     more = []
     if len(arr) <= limit:
-        return sorted(arr)
+        return selection_sort(arr)
     else:
         pivot = funcPivot(arr)
         for i in arr:
@@ -54,19 +58,16 @@ def quickRandom(arr):
 	return quickSort(arr, randPivot, 1)
 
 def quickSeuil(arr):
-	return quickSort(arr, firstElemPivot, 500)
+	return quickSort(arr, firstElemPivot, 20)
 
 def quickRandomSeuil(arr):
-	return quickSort(arr, randPivot, 2)
+	return quickSort(arr, randPivot, 20)
 
-def insertion_sort(l):
-    for i in xrange(1, len(l)):
-        j = i-1 
-        key = l[i]
-        while (l[j] > key) and (j >= 0):
-           l[j+1] = l[j]
-           j -= 1
-        l[j+1] = key
+def selection_sort(lst):
+    for i, e in enumerate(lst):
+        mn = min(range(i,len(lst)), key=lst.__getitem__)
+        lst[i], lst[mn] = lst[mn], e
+    return lst
 
 def counting(array):
 	from collections import defaultdict
@@ -85,10 +86,13 @@ def main(argv=None):
 	val = F.readlines()
 	val = list(map(int, val))
 	val = delegator(globals()[argv[2]], val)
-	print(val)
 
+	for x in range(1,len(sys.argv)):
+		if sys.argv[x] == "-p":
+			val = str(val)
+			val = val.replace(",","\n")
+			print((val)[1:-1])
 
-		
 if __name__ == "__main__":
     main()
 

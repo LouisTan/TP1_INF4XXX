@@ -25,4 +25,4 @@ esac
 shift
 done
 
-python3 ./tp1_inf4XXX.py $EX_PATH $ALGO OPTIONS
+python3 ./tp1_inf4XXX.py $EX_PATH $ALGO $OPTIONS
