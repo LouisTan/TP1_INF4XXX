@@ -1,0 +1,17 @@
+from matplotlib import pyplot as plt
+from matplotlib importe style
+import numpy as np
+
+style.use('ggplot')
+
+x,y = np.loadtext('quick_serie1.csv',
+				   unpack = true,
+				   delimiter = ',')
+
+plt.plot(x,y)
+
+plt.title('Epic Chart')
+plt.ylabel('Y axis')
+plt.xlabel('X axis')
+
+plt.show()
