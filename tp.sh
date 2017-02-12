@@ -14,7 +14,7 @@ case $key in
     EX_PATH="$2"
     shift
     ;;
-    -p|--print|-t|--time)
+    -p|--print|-t|--time|-s|--seuil)
     OPTIONS="${OPTIONS}${1} "
     ;;
     *)
