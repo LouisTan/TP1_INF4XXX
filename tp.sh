@@ -14,7 +14,11 @@ case $key in
     EX_PATH="$2"
     shift
     ;;
-    -p|--print|-t|--time|-s|--seuil)
+    -s|--seuil)
+    SEUIL="$2"
+    shift
+    ;;
+    -p|--print|-t|--time|-h|--help)
     OPTIONS="${OPTIONS}${1} "
     ;;
     *)
@@ -25,4 +29,4 @@ esac
 shift
 done
 
-python3 ./tp1_inf4XXX.py $EX_PATH $ALGO $OPTIONS
+python3 ./tp1_inf4XXX.py $EX_PATH $ALGO $SEUIL $OPTIONS

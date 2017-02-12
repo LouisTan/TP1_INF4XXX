@@ -107,11 +107,11 @@ def main(argv=None):
 	val = list(map(int, val))
 	entry = delegator(globals()[args.algo],val)
 
-	# if args.depth:
-	# 	print('Algo',args.algo,'Seuil',args.depth)
+	#if args.depth:
+	#	print(args.depth)
 	if args.time:
 	 	print(entry[0])
- 	if args.printn:
+	if args.printn:
 		print((str(entry[1]).replace(",","\n"))[1:-1])
 
 if __name__ == "__main__":
