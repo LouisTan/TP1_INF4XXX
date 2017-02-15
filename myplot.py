@@ -1,29 +1,24 @@
 from matplotlib import pyplot as plt
-from matplotlib import style
+from textwrap import wrap
 import numpy as np
+import argparse
 import sys
 
-def drawGraph(file1,file2,file3):
+parser = argparse.ArgumentParser()
+parser.add_argument("files",help="Number of curves of display (MAX: 6)", nargs='+')
+args = parser.parse_args()
 
-	x,y = np.loadtxt(str(file1)+".csv", 
-					 delimiter = ',',
-				   	 unpack = True)
+def drawGraph():
+	for ind in range(len(args.files)):
+		x = "x"+str(ind)
+		y = "y"+str(ind)
+		x,y = np.loadtxt(str(args.files[ind]),delimiter = ',', unpack = True)
+		plt.plot(x,y,label=args.files[ind])
 
-	x1,y1 = np.loadtxt(str(file2)+".csv", 
-					 delimiter = ',',
-				   	 unpack = True)
 
-	x2,y2 = np.loadtxt(str(file3)+".csv", 
-					 delimiter = ',',
-				   	 unpack = True)
-
-	plt.plot(x,y,'go',label=file1)
-	plt.plot(x1,y1,'ro',label=file2)
-	plt.plot(x2,y2,'ko',label=file3)
-
-	plt.title(str(file1)+" vs "+str(file2)+" vs "+str(file3))
-	plt.ylabel('Temps execution (s)')
-	plt.xlabel('Nombre operations')
+	plt.title("\n".join(wrap(str(args.files)[1:-1], 60)))	
+	plt.ylabel('Temps d\'execution (s)')
+	plt.xlabel('Nombre d\'operations')
 	plt.legend(loc='best')
 	
  	plt.show()
@@ -31,11 +26,8 @@ def drawGraph(file1,file2,file3):
 def main(argv=None):
 	if argv is None:
 		argv = sys.argv
+	
+	drawGraph()
 
-	drawGraph(sys.argv[1], sys.argv[2], sys.argv[3])
 if __name__ == "__main__":
     main()
-
-
-
-
