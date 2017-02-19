@@ -12,32 +12,14 @@
 # Vous pouvez par après vous inspirer de ce script pour évaluer toutes les
 # séries avec tous les algorithmes.
 
-# #ORIGINAL
-# for algo in {"counting","quick","quickRandom","quickSeuil","quickRandomSeuil"}; do
-#     # Pour chaque fichier de série.
-#     for serie in {"serie1","serie2","serie3"}; do
-#         # Pour chaque exemplaire dans une série.
-#         for ex in $(ls $serie); do
-#             # On receuille le temps d'exécution dans t.
-#             t=$(timeout 180 ./tp.sh -a $algo -e ${serie}/${ex} -t)
-#             # On évalue la taille de l'exemplaire.
-#             n=$(cat ${serie}/${ex} | wc -l)
-#             # Si jamais on mesure un temps, on l'insère dans le bon fichier.
-#             if [ t != "" ]; then
-#                 echo $n,$t >> ./${algo}_${serie}.csv
-#             fi
-#         done
-#     done
-# done
-
 #ORIGINAL
-for algo in {"quickSeuil","quick"}; do
+for algo in {"counting","quick","quickRandom","quickSeuil","quickRandomSeuil"}; do
     # Pour chaque fichier de série.
     for serie in {"serie1","serie2","serie3"}; do
         # Pour chaque exemplaire dans une série.
         for ex in $(ls $serie); do
             # On receuille le temps d'exécution dans t.
-            t=$(timeout 180 ./tp.sh -a $algo -e ${serie}/${ex} -s 8 -t)
+            t=$(timeout 180 ./tp.sh -a $algo -e ${serie}/${ex} -t)
             # On évalue la taille de l'exemplaire.
             n=$(cat ${serie}/${ex} | wc -l)
             # Si jamais on mesure un temps, on l'insère dans le bon fichier.
@@ -47,6 +29,24 @@ for algo in {"quickSeuil","quick"}; do
         done
     done
 done
+
+# #ORIGINAL
+# for algo in {"counting","quick"}; do
+#     # Pour chaque fichier de série.
+#     for serie in {"serie1","serie2","serie3"}; do
+#         # Pour chaque exemplaire dans une série.
+#         for ex in $(ls $serie); do
+#             # On receuille le temps d'exécution dans t.
+#             t=$(timeout 180 ./tp.sh -a $algo -e ${serie}/${ex} -s 8 -t)
+#             # On évalue la taille de l'exemplaire.
+#             n=$(cat ${serie}/${ex} | wc -l)
+#             # Si jamais on mesure un temps, on l'insère dans le bon fichier.
+#             if [ t != "" ]; then
+#                 echo $n,$t >> ./${algo}_${serie}.csv
+#             fi
+#         done
+#     done
+# done
 
 #RANDOM AlGO
 # for algo in {"quickRandom","quickRandomSeuil-"}; do
@@ -71,9 +71,9 @@ done
 #     done
 # done
 
-#SEUIL
+# SEUIL
 # Pour chaque fichier de série.
-#for serie in {"serie1","serie2","serie3"};
+# for serie in {"serie1","serie2","serie3"};
 #    # Pour chaque exemplaire dans une série.
 #    for ex in $(ls $serie); do
 #        for seuil in {1,2,3,4,5,6,7,8,9,10}; do
@@ -81,8 +81,8 @@ done
 #            t=$(timeout 180 ./tp.sh -a quickSeuil -s ${seuil} -e ${serie}/${ex} -t)
 #            # Si jamais on mesure un temps, on l'insère dans le bon fichier.
 #            if [ t != "" ]; then
-#                echo $seuil,$t >> ./quickSeuil_${serie}.csv   
+#                echo $seuil,$t >> ./quickSeuilVariable_${serie}.csv   
 #            fi
 #        done
 #    done
-#done
+# done

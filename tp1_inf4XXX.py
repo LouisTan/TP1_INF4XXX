@@ -9,7 +9,7 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("path",help="Path to the test files")
 parser.add_argument("algo", help="Sorting algorithm [quick|quickSeuil|quickRandom|quickRandomSeuil]")
-parser.add_argument("depth",type=int, help="Recursivity depth", default=1)	
+parser.add_argument("--depth",help="Recursivity depth (default=1)",type=int, nargs='?',  const=1)	
 parser.add_argument("-t","--time", help="Print time", action="store_true")
 parser.add_argument("-p","--printn", help="Print sorted content", action="store_true")
 
