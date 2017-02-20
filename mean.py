@@ -20,13 +20,18 @@ def average():
 		for n in num:
 			val = 0
 			cpt = 0
+			maxV = 0
+			minV = 99
 			for row in reader:
 				if str(n) == row[0]:
+					if float(row[1]) < minV:
+						minV = float(row[1])
+					if float(row[1]) > maxV:
+						maxV = float(row[1])
 					val = val + float(row[1])
 					cpt = cpt + 1
-			entry = (n,val/cpt)
+			entry = (n,minV,val/cpt,maxV)
 			meanList.append(entry)
-			print(cpt)
 
 			csvfile.seek(0)
 	return meanList
